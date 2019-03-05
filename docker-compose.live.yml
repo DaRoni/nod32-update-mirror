@@ -15,13 +15,13 @@ services:
       NGINX_SERVER_ACCESS_LOG_PATH: '/dev/stdout'
       NGINX_SERVER_SCHEME: 'http'
       NGINX_SERVER_NAME: '127.0.0.1'
-      NGINX_AUTH_USERS_AND_PASSWORDS: 'user1:password1 user2:password2' # Comment this line or set "" to disable
+      NGINX_AUTH_USERS_AND_PASSWORDS: '' # Comment this line or set "" to disable
     entrypoint: /nginx-extrypoint.sh
     command: nginx
     volumes:
     - nod32-data:/data:ro
     ports:
-     - '8080:80'
+     - '80:80'
 
   scheduler:
     image: tarampampam/nod32-update-mirror
@@ -33,10 +33,11 @@ services:
       START_BEFORE_LOOP: 'true'
       NOD32MIRROR_DEBUG_MODE: '0'
       NOD32MIRROR_USE_FREE_KEY: '1'
-      NOD32MIRROR_MIRROR_DIR: '/data'
+      NOD32MIRROR_MIRROR_DIR: '/data/nod32'
+      NOD32MIRROR_URI_PATH: 'nod32/'
       NOD32MIRROR_LOG_PATH: '/var/log/nod32/nod32mirror.log'
       NOD32MIRROR_KEYS_DIRECTORY: '/opt/nod32keys'
-      NOD32MIRROR_VERSIONS: 'pcu 4 5 6 7 8 9'
+      NOD32MIRROR_VERSIONS: 'pcu 4 8 '
       NOD32MIRROR_LANGUAGES: '1033 1049'
       NOD32MIRROR_DOWNLOAD_SPEED_LIMIT: '20480'
     entrypoint: /scheduler-entrypoint.sh
