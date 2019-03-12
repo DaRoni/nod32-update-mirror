@@ -16,6 +16,7 @@ services:
       NGINX_SERVER_SCHEME: 'http'
       NGINX_SERVER_NAME: '127.0.0.1'
       NGINX_AUTH_USERS_AND_PASSWORDS: '' # Comment this line or set "" to disable
+      TZ: 'Asia/Almaty'
     entrypoint: /nginx-extrypoint.sh
     command: nginx
     volumes:
@@ -40,6 +41,7 @@ services:
       NOD32MIRROR_VERSIONS: 'pcu 4 8'
       NOD32MIRROR_LANGUAGES: '1033 1049'
       NOD32MIRROR_DOWNLOAD_SPEED_LIMIT: '20480'
+      TZ: 'Asia/Almaty'
     entrypoint: /scheduler-entrypoint.sh
     command: /src/nod32-mirror.sh --force-yes --keys-update; /src/nod32-mirror.sh --force-yes --update
     volumes:
