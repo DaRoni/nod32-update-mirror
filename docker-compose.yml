@@ -31,12 +31,13 @@ services:
       NGINX_SERVER_ACCESS_LOG_PATH: '/dev/stdout'
       NGINX_AUTH_USERS_AND_PASSWORDS: 'user1:password1 user2:password2' # Comment this line or set "" to disable
       NGINX_SERVER_EXTRA: '# No extra SERVER config'
+      TZ: 'Asia/Almaty'
     entrypoint: /nginx-extrypoint.sh
     command: nginx
     volumes:
     - nod32-data:/data:ro
     ports:
-     - '8080:80'
+     - '80:80'
 
   scheduler:
     build: .
@@ -54,7 +55,8 @@ services:
       NOD32MIRROR_VERSIONS: 'pcu 4 5 6 7 8 9'
       NOD32MIRROR_LANGUAGES: '1033 1049'
       NOD32MIRROR_DOWNLOAD_MAX_TIME: '60'
-      NOD32MIRROR_DOWNLOAD_SPEED_LIMIT: '20480'
+      NOD32MIRROR_DOWNLOAD_SPEED_LIMIT: ''
+      TZ: 'Asia/Almaty'
     entrypoint: /scheduler-entrypoint.sh
     command: /src/nod32-mirror.sh --force-yes --keys-update; /src/nod32-mirror.sh --force-yes --update
     volumes:
